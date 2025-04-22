@@ -12,7 +12,6 @@ import (
 )
 
 func main() {
-	// Setup pprof endpoints
 	go func() {
 		mux := http.NewServeMux()
 		mux.HandleFunc("/debug/pprof/", pprof.Index)
@@ -25,13 +24,11 @@ func main() {
 		http.ListenAndServe(":6060", mux)
 	}()
 
-	// Validator
 	validator, err := protovalidate.New(protovalidate.WithFailFast())
 	if err != nil {
 		log.Fatalf("failed to create validator: %v", err)
 	}
 
-	// Simulate some validation work
 	for {
 		msg := &pb.User{
 			Name: "Al",
@@ -39,7 +36,6 @@ func main() {
 		}
 
 		if err := validator.Validate(msg); err != nil {
-			// expect validation error
 			log.Println("validation failed:", err)
 		} else {
 			log.Println("validation passed")

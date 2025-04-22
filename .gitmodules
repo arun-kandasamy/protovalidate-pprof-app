@@ -1,3 +1,4 @@
-[submodule "third_party/protovalidate"]
-	path = third_party/protovalidate
+[submodule "protovalidate"]
+	path = protovalidate
 	url = https://github.com/bufbuild/protovalidate.git
+  branch = main

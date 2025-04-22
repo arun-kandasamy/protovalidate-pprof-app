@@ -6,7 +6,7 @@ import (
 	"net/http/pprof"
 	"time"
 
-	pb "protovalidate-pprof-app/gen"
+	pb "protovalidate-pprof-app/gen/example/v1"
 
 	"github.com/bufbuild/protovalidate-go"
 )
@@ -26,7 +26,7 @@ func main() {
 	}()
 
 	// Validator
-	validator, err := protovalidate.New()
+	validator, err := protovalidate.New(protovalidate.WithFailFast())
 	if err != nil {
 		log.Fatalf("failed to create validator: %v", err)
 	}
@@ -35,7 +35,7 @@ func main() {
 	for {
 		msg := &pb.User{
 			Name: "Al",
-			Age:  -1,
+			Age:  1,
 		}
 
 		if err := validator.Validate(msg); err != nil {
@@ -45,6 +45,6 @@ func main() {
 			log.Println("validation passed")
 		}
 
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(1000 * time.Millisecond)
 	}
 }

@@ -4,7 +4,7 @@ package example.v1;
 
 import "buf/validate/validate.proto";
 
-option go_package = "github.com/arun.kandasamy/protovalidate-pprof-example/gen/example/v1;examplev1";
+option go_package = "protovalidate-pprof-example/gen/example/v1;examplev1";
 
 message User {
   string name = 1 [(buf.validate.field).string = {

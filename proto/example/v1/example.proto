@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package example.v1;
+
+import "buf/validate/validate.proto";
+
+option go_package = "github.com/arun.kandasamy/protovalidate-pprof-example/gen/example/v1;examplev1";
+
+message User {
+  string name = 1 [(buf.validate.field).string = {
+    min_len: 3,
+    max_len: 50
+  }];
+  
+  string email = 2 [(buf.validate.field).string.email = true];
+  
+  uint32 age = 3 [(buf.validate.field).uint32 = {
+    gte: 18,
+    lte: 100
+  }];
+}
